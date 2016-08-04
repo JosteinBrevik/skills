@@ -1,0 +1,23 @@
+/* Empty. Add your own CSS if you like */
+
+#inputter{
+  text-align: center;
+  font-size: xx-large;
+  height: 150%;
+}
+
+.centeredText{
+  text-align: center;
+}
+
+.centered{
+  margin: auto;
+  width: 75%;
+}
+
+.infoSize{
+  width: 75%;
+  heigth: 75%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}

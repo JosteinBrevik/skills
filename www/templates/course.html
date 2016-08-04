@@ -1,0 +1,38 @@
+<ion-view view-title="Course" ng-controller="CourseCtrl">
+
+  <ion-nav-title>
+    {{title.myTitle}} <!-- Used to dynamically change the title based on course -->
+  </ion-nav-title>
+
+
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-information" ng-controller="InfoCtrl" ng-click="openModal()" ></button>
+  </ion-nav-buttons>
+
+  <ion-content  class="centered">
+
+    <!-- Timer and points -->
+    <div id="timerPoints"  class="centeredText" ng-controller="TimerCtrl" ng-init="setStartTime()">
+      <h2>Time: {{timer.timeSinceStart}}    Points: {{points.points}}</h2>
+    </div>
+
+    <!-- Displays the currently picked value-->
+    <div class="card">
+      <div class="item item-text-wrap"  id="inputter">{{pickedValue.char}}</div>
+    </div>
+
+    <!-- Takes in the users guess -->
+    <label class="item item-input">
+      <input id="inputbox" autofocus detect-focus focus-on-blur="focusManager.focusInputOnBlur" class = "centeredText" type="text" placeholder="Your guess" ng-model="inputVal.text">
+    </label>
+
+    <!-- Submit button -->
+    <button class="button button-dark button-block" ng-click="checkIfCorrect()">Submit</button>
+
+    <!-- Logger for debugging -->
+    <div class="card centeredText">
+      <span ng-style="customStyle.style">{{log.text}}</span>
+    </div>
+
+  </ion-content>
+</ion-view>

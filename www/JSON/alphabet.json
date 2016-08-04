@@ -1,0 +1,14 @@
+{
+  "values":[
+    {"char": "a", "match": ["a"]},
+    {"char": "b", "match": ["b"]},
+    {"char": "c", "match": ["c"]},
+    {"char": "d", "match": ["d"]},
+    {"char": "e", "match": ["e"]}
+  ],
+  "type": {"value": "text"},
+  "image": {"value": "https://doyoukno.files.wordpress.com/2008/10/untitled1.jpg"},
+  "text": {"value": "The classical Latin alphabet, also known as the Roman alphabet, is a writing system originally used to write the Latin Language. The Latin alphabet evolved from the visually similar Cumaean Greek version of the Greek alphabet. The Greek alphabet, including the Cumaean version, descended from the Phoenician abjad while the Phoenician alphabet is derived from Egyptian hieroglyphics.[1] The Etruscans who ruled early Rome adopted and modified the Cumaean Greek alphabet. The Etruscan alphabet was in turn adopted and further modified by the ancient Romans to write the Latin language."}
+}
+
+

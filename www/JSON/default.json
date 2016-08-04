@@ -1,0 +1,11 @@
+{
+  "values":[
+    {"char": "Where do poor meatballs live?", "match": ["The Spaghetto"]},
+    {"char": "What's grey and can't swim?", "match": ["A castle"]},
+    {"char": "What's yellow and hurts when it gets in your eye?", "match": ["A bulldozer"]},
+    {"char": "What do a grape and a rabbit have in common?", "match": ["They're both purple except for the rabbit"]},
+    {"char": "Whats the object-oriented way to become wealthy?", "match": ["Inheritance"]}
+  ],
+  "image": {"value": "http://www.improgrammer.net/wp-content/uploads/2015/02/imagesbug_20vs_20feature_small.jpg"},
+  "text": {"value": "You're not supposed to be at this page. If you think something is wrong, please contact the developers :)"}
+}

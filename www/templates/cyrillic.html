@@ -1,0 +1,44 @@
+
+
+<ion-view view-title="Cyrillic" ng-controller="AlphaCtrl">
+
+
+  <ion-nav-buttons side="right">
+    <a href = "#/app/info"><button class="button button-clear icon ion-ios-information-outline" ng-click="infoClicked()">
+    </button></a>
+  </ion-nav-buttons>
+
+  <ion-content ng-init="init('cyrillic')" class="centered">
+    <!-- List showing values and their match. For debugging
+    <ion-list>
+      <ion-item ng-repeat="value in alphaValues">
+        {{value.char}} matches {{value.match}}
+      </ion-item>
+    </ion-list>
+    -->
+
+    <!-- Displays the currently picked value-->
+    <div class="card">
+      <div class="item item-text-wrap"  id="inputter">{{pickedValue.char}}</div>
+    </div>
+
+    <!-- Takes in the users guess -->
+    <label class="item item-input">
+      <input class = "centeredText" type="text" placeholder="Your guess" ng-model="inputVal.text">
+    </label>
+
+    <!-- Loggin helper -->
+    <div class="card centeredText">
+      <span ng-style="customStyle.style">{{log.text}}</span>
+    </div>
+
+    <!-- Shows point value -->
+    <div class ="centeredText">Poeng: {{points.points}}</div>
+
+    <!-- Submit button -->
+    <button class="button button-dark button-block" ng-click="checkIfCorrect()">Submit</button>
+
+  </ion-content>
+</ion-view>
+
+

@@ -1,0 +1,11 @@
+{
+  "alphabets":[
+    {"name": "alphabet", "displayName": "Alphabet"},
+    {"name": "cyrillic", "displayName": "Cyrillic"},
+    {"name": "korean", "displayName": "Korean (Hangul)"}
+  ],
+
+  "geography":[
+    {"name": "europecapitals", "displayName": "European Capitals"}
+  ]
+}
