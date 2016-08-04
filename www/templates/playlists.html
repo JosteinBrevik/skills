@@ -1,15 +1,15 @@
 <ion-view view-title="Courses" ng-controller="CoursesListCtrl" ng-init="init()">
   <ion-content>
-    <div class = "centered">
+    <div>
       Recommended course of the day: European Capitals - Because you don't know where Pristina is
     </div>
-    <div ng-repeat="category in categories" class = "card">
+    <ul ng-repeat="category in categories" class = "card">
       <h2>{{category.charAt(0).toUpperCase() + category.slice(1)}}</h2> <!-- Capitalizes the category -->
       <a href="#app/course">
         <ul ng-repeat="x in courses[categories.indexOf(category)]">
           <li class="card" ng-click="courseClicked(category, $index)">{{x.displayName}}</li>
         </ul>
       </a>
-    </div>
+    </ul>
   </ion-content>
 </ion-view>

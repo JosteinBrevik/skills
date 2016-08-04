@@ -2,7 +2,7 @@
 angular.module('skills.controllers', [])
   //If you want to move one of these to its own file, look at courseCtrl and add a new script src in index.html
 
-
+  
   .controller('TimerCtrl', ['$log', '$scope', '$timeout', function($log, $scope, $timeout){
     var startTime = Date.now();
     $scope.$log = $log;
@@ -50,23 +50,20 @@ angular.module('skills.controllers', [])
   $scope.status = {text: "Status"};
 
   //Finds all the different categories, and courses within these
-  //Creates a 2d array (courses) which is then used in the html
   $scope.init = function(){
     $scope.$log.log("Initializing courseList");
     $http({
       method: 'GET',
       url: "./JSON/courses.json"  // './' is a relative path, '/' is absolute. Relative works better on Android
     }).then(function successCallback(response) {
-      $scope.$log.log("Success fetching response" + response);
       var data = response.data;
       $scope.categories = Object.keys(data); //Categories like alphabets and geography
       $scope.courses = new Array($scope.categories.length);
       for(var i = 0; i < $scope.categories.length; i++){
         $scope.courses[i] = data[$scope.categories[i]];  //Courses like Cyrillic and European Capitals
       }
-      $scope.$log.log("Success fetching courseList");
     }, function errorCallback(response) {
-      $scope.$log.log("Error occurred fetching courseList" + response);
+      $scope.$log.log("Error occurred fetching courseList");
       $scope.courses[0][0] = {name: "error", displayName: "error"};
     });
   };
@@ -130,7 +127,7 @@ angular.module('skills.controllers', [])
   };
 
   // Open the login modal
-  $scope.openModal = function() {
+  $scope.login = function() {
     $scope.modal.show();
   };
 
@@ -144,8 +141,4 @@ angular.module('skills.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
 });

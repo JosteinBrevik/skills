@@ -6,6 +6,7 @@ angular.module('skills.controllers')
 
   var values = [];
   var pickedValue = "";
+  var file = "";
   $scope.inputVal = {};
   $scope.$log = $log;
   $scope.log = {text: "Log here"};
@@ -30,7 +31,7 @@ angular.module('skills.controllers')
         //file = filename;
         values = data.values;
         $scope.$log.log(values);
-        for(var i = 0; i < values.length; i++){  //Puts everything in lowercase, so that you can copy/paste into the JSON
+        for(i = 0; i < values.length; i++){  //Puts everything in lowercase, so that you can copy/paste into the JSON
           values[i].match = values[i].match.join('|').toLowerCase().split('|');  //Clever way to lowercase an array
         }
         $scope.values = values;

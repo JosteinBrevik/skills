@@ -2,7 +2,7 @@
  * Created by Jostein on 01.08.2016.
  */
 angular.module('skills.controllers')
-  .controller('InfoCtrl', ['$log', '$scope', 'CourseManager', '$http', '$ionicModal', function($log, $scope, CourseManager, $http, $ionicModal){
+  .controller('InfoCtrl', ['$log', '$scope', 'CourseManager', '$http', function($log, $scope, CourseManager, $http){
     var courseManager = {};
     var courseData = {};
     $scope.courseManager = courseManager;
@@ -53,39 +53,5 @@ angular.module('skills.controllers')
 
     ;$scope.$on('$stateChangeSuccess', function() {
       $scope.getInfo();
-    });
-
-
-    //-------------------------------------------------------------------------------------
-    //Creating the info-pop-up-modal
-    $ionicModal.fromTemplateUrl('templates/info.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-
-    // Triggered in the login modal to close it
-    $scope.closeModal = function() {
-      $scope.modal.hide();
-    };
-
-    // Open the login modal
-    $scope.openModal2 = function() {
-      $scope.modal.show();
-    };
-
-    // Perform the login action when the user submits the login form
-    $scope.doLogin = function() {
-      console.log('Doing login', $scope.loginData);
-
-      // Simulate a login delay. Remove this and replace with your login
-      // code if using a login system
-      $timeout(function() {
-        $scope.closeModal();
-      }, 1000);
-    };
-
-    $scope.$on('$destroy', function() {
-      $scope.modal.remove();
     });
   }]);
