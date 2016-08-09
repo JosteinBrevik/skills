@@ -1,5 +1,20 @@
-<ion-view view-title="Search">
+<ion-view view-title="Search" ng-controller="searchCtrl">
   <ion-content>
     <h1>Search</h1>
+
+    <label class="item item-input">
+      <input ng-model = "values.data" placeholder="Data to save">
+    </label>
+
+    <label class="item item-input">
+      <input ng-model = "values.filename" placeholder="Filename">
+    </label>
+
+    <button ng-click="saveTestData()">Save</button>
+    <button ng-click="loadTestData()">Load</button>
+
+    <div>Data: {{values.data}}</div>
+    <div>File: {{values.filename}}</div>
+
   </ion-content>
 </ion-view>
