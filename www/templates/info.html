@@ -6,21 +6,23 @@
   </ion-content>
 </ion-view> -->
 
-<ion-modal-view>
-  <ion-content>
-    <button class = "button icon icon-left ion-ios-close-outline"
-            ng-click = "closeModal()">Close Modal</button>
-  </ion-content>
-  <ion-tabs ng-controller="InfoCtrl" class = "centeredText tabs-positive">
-      <!-- <h1>{{courseName.text}}</h1> -->
-    <ion-tab title="Result" >
-      <ion-content>
+<ion-modal-view ng-controller = "InfoCtrl">
+
+
+  <ion-header-bar align-title="left" class="bar bar-header bar-light">
+    <h1 class="title">{{courseData.title}}</h1>
+    <button class="button button-clear" ng-click="modal.hide()">Return</button>
+  </ion-header-bar>
+
+  <ion-tabs class="tabs-stable">
+    <ion-tab title="Result">
+      <ion-content class="has-subheader centered">
         <img ng-src="{{courseData.image}}" class = "infoSize centered">
       </ion-content>
     </ion-tab>
 
     <ion-tab title="About" >
-      <ion-content class = "card">
+      <ion-content class="has-subheader centered">
         <h1 class="centered">{{courseData.title}}</h1>
         <p class = "infoSize centered">{{courseData.text}}</p>
       </ion-content>
@@ -28,4 +30,5 @@
 
   </ion-tabs>
 </ion-modal-view>
+
 

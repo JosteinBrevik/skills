@@ -43,15 +43,12 @@ angular.module('skills.controllers')
     }, function(NewValue, OldValue){
       $scope.courseManager = NewValue;
       $scope.$log.log("New courseManager @info: " + NewValue.name);
+      $scope.getInfo();
     });
 
-    //Both route- and stateChangeSuccess may be called, depending on implementation. Probably redundant, but better safe than sorry
-    $scope.$on('$routeChangeSuccess', function() {
-
-      $scope.getInfo();
+    // Retrieves info on show
+    $scope.$on('modal.shown', function() {
+      $scope.$log.log("Entered info");
     })
 
-    ;$scope.$on('$stateChangeSuccess', function() {
-      $scope.getInfo();
-    });
   }]);

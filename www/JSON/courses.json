@@ -7,5 +7,9 @@
 
   "geography":[
     {"name": "europecapitals", "displayName": "European Capitals"}
+  ],
+
+  "for kids":[
+    {"name": "farmanimals", "displayName": "Farm Animals"}
   ]
 }

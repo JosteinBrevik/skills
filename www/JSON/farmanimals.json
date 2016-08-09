@@ -1,0 +1,12 @@
+{  "values":[
+  {"char": "https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/cat-breed-landing-hero.ashx", "match": ["cat"]},
+  {"char": "http://animal-dream.com/data_images/cow/cow8.jpg", "match": ["cow"]},
+  {"char": "https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/dog-medium-landing-hero.ashx", "match": ["dog"]},
+  {"char": "http://www.shauntmax30.com/1023960-computer-wallpaper-of-donkey.html", "match": ["donkey"]},
+  {"char": "http://thehippiejunkie.com/wp-content/uploads/2016/03/chicken_with_a_sombrero_by_muffinzor-d870ti4.png", "match": ["chicken", "hen"]},
+  {"char": "http://animalia-life.com/image.php?pic=/data_images/pig/pig4.jpg", "match": ["pig"]}
+],
+  "type": {"value": "img"},
+  "text": {"value": "Farm animals are cute"},
+  "image": {"value": "https://www.primarytreasurechest.com/images/stories/preview%20images/animals%20-%20farm%20animals%20-%20posters%20-%20PI.jpg"}
+}
