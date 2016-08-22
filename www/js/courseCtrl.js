@@ -2,7 +2,7 @@
  * Created by Jostein on 01.08.2016.
  */
 angular.module('skills.controllers')
-  .controller('CourseCtrl', ['$scope', '$window', '$timeout', '$log', '$http', 'CourseManager', '$location', '$ionicHistory', function($scope, $window, $timeout, $log, $http, CourseManager, $location, $ionicHistory) {
+  .controller('CourseCtrl', ['$scope', '$window', '$timeout', '$log', '$http', 'CourseManager', 'TimerManager', '$location', '$ionicHistory', function($scope, $window, $timeout, $log, $http, CourseManager, TimerManager, $location, $ionicHistory) {
 
     var values = [];
     var pickedValue = "";
@@ -33,7 +33,7 @@ angular.module('skills.controllers')
         .success(function(data) {
           values = data.values;
           $scope.$log.log(values);
-          for(i = 0; i < values.length; i++){  //Puts everything in lowercase, so that you can copy/paste into the JSON
+          for(var i = 0; i < values.length; i++){  //Puts everything in lowercase, so that you can copy/paste into the JSON
             values[i].match = values[i].match.join('|').toLowerCase().split('|');  //Clever way to lowercase an array
           }
 
@@ -65,9 +65,10 @@ angular.module('skills.controllers')
 
         //Check if you're at max points
         if($scope.points.points == 5){
+          $scope.checkForNewRecord();
           $ionicHistory.nextViewOptions({
             disableBack: true
-          }); //Must reset back button so it doesn't point back to the course
+          }); //Must reset back button so it doesn't point back to the course (shows burgermenu instead)
           $location.path("#/app");
         }else{
           $scope.points.points += 1;
@@ -83,6 +84,11 @@ angular.module('skills.controllers')
 
         //TODO: Add more functionality for when you answer wrong
       }
+    };
+
+    $scope.checkForNewRecord = function(){
+      var currentTime = TimerManager.getTime();
+      $scope.$log.log("Time used: " + currentTime);
     };
 
     //Handles everything on enter

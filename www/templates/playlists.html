@@ -7,7 +7,7 @@
       <h2>{{category.charAt(0).toUpperCase() + category.slice(1)}}</h2> <!-- Capitalizes the category -->
       <a href="#app/course">
         <ul ng-repeat="x in courses[categories.indexOf(category)]">
-          <li class="card" ng-click="courseClicked(category, $index)">{{x.displayName}}</li>
+          <li class="card" ng-click="courseClicked(category, $index)">{{x.displayName}} {{bestTimes[$parent.$index][$index]}}</li>
         </ul>
       </a>
     </ul>

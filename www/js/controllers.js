@@ -3,7 +3,7 @@ angular.module('skills.controllers', [])
   //If you want to move one of these to its own file, look at courseCtrl and add a new script src in index.html
 
 
-  .controller('TimerCtrl', ['$log', '$scope', '$timeout', function($log, $scope, $timeout){
+  .controller('TimerCtrl', ['$log', '$scope', '$timeout', 'TimerManager', function($log, $scope, $timeout, TimerManager){
     var startTime = Date.now();
     $scope.$log = $log;
     $scope.timer = {"timeSinceStart" : "0"};
@@ -14,23 +14,22 @@ angular.module('skills.controllers', [])
       startTime = Date.now();
       $scope.$log.log("StartTime: " + startTime);
       $scope.timer.timeSinceStart = 0;
+      TimerManager.setTime(0);
     };
 
     $scope.startTimer = function(){
       //$scope.$log.log("ticK");
       $scope.timer.timeSinceStart = Math.floor((Date.now() - startTime)/1000);
+      TimerManager.setTime($scope.timer.timeSinceStart);
       timeKeeper = $timeout($scope.startTimer, 1000);
     };
     $scope.startTimer();
 
     //Both route- and stateChangeSuccess may be called, depending on implementation. Probably redundant, but better safe than sorry
-    $scope.$on('$viewContentLoaded', function() {
+    $scope.$on('$ionicView.enter', function() {
       $scope.setStartTime();
     });
 
-    /*$scope.$on('$stateChangeSuccess', function() {
-      $scope.setStartTime();
-    });*/
 
     $scope.$on("$destroy", function(){
       $timeout.cancel(timeKeeper);
@@ -66,6 +65,25 @@ angular.module('skills.controllers', [])
         $scope.$log.log("Error occurred fetching courseList");
         $scope.courses[0][0] = {name: "error", displayName: "error"};
       });
+
+
+    };
+    $scope.getTimes = function() {
+      $scope.bestTimes = [$scope.categories.length];
+
+      for(var i = 0; i < $scope.courses.length; i++){
+        $scope.bestTimes[i] = [$scope.courses[i].length];
+
+        for(var j = 0; j < $scope.courses[i].length; j++){
+          var data = $scope.loadData($scope.courses[i][j].name);
+          $scope.$log.log("Course: " + $scope.courses[i][j].name + " Time: " + data);
+
+          if(typeof(data) == "undefined"){
+            $scope.bestTimes[i][j] = 0;
+          }else{$scope.bestTimes[i][j] = data;}
+        }
+      }
+      $scope.$log.log($scope.bestTimes);
     };
 
     //Sets the current course to the clicked index. Course view is loaded after this (done in the html-file)
@@ -76,7 +94,15 @@ angular.module('skills.controllers', [])
 
 
       $scope.$log.log("New CourseManager: " + CourseManager.getCourseManager().name);
-    }
+    };
+
+    $scope.$on('$ionicView.beforeEnter', function(e) {
+      $scope.$log.log("Fetching record times");
+      $scope.getTimes();
+
+    });
+
+
   }])
 
 
@@ -155,11 +181,11 @@ angular.module('skills.controllers', [])
     };
 
     $scope.saveData = function(filename, dataToSave) {
-      window.localStorage.setItem(filename, dataToSave);
+      window.localStorage.setItem(filename.toLowerCase(), dataToSave);
     };
 
     $scope.loadData = function(filename){
-      return window.localStorage.getItem(filename);
+      return window.localStorage.getItem(filename.toLowerCase());
     }
 
   });
