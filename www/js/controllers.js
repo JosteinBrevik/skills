@@ -42,11 +42,12 @@ angular.module('skills.controllers', [])
     Controller for the main menu with all the courses
     CourseManager is a factory used for storing the name of the currently selected course
    */
-  .controller('CoursesListCtrl', ['$log', '$scope', '$http', 'CourseManager', function($log, $scope, $http, CourseManager){
+  .controller('CoursesListCtrl', ['$window', '$state', '$log', '$scope', '$http', 'CourseManager', function($window, $state, $log, $scope, $http, CourseManager){
     $scope.$log = $log;
     $scope.categories = [];
     $scope.courses = [];
     $scope.status = {text: "Status"};
+    $scope.bestTimes = [];
 
     //Finds all the different categories, and courses within these
     $scope.init = function(){
@@ -67,6 +68,7 @@ angular.module('skills.controllers', [])
       });
 
 
+
     };
     $scope.getTimes = function() {
       $scope.bestTimes = [$scope.categories.length];
@@ -78,28 +80,26 @@ angular.module('skills.controllers', [])
           var data = $scope.loadData($scope.courses[i][j].name);
           $scope.$log.log("Course: " + $scope.courses[i][j].name + " Time: " + data);
 
-          if(typeof(data) == "undefined"){
-            $scope.bestTimes[i][j] = 0;
-          }else{$scope.bestTimes[i][j] = data;}
+          if(typeof(data) == "undefined" || data == null){
+            $scope.bestTimes[i][j] = "Unattempted course";
+          }else{$scope.bestTimes[i][j] = data + 's';}
         }
       }
       $scope.$log.log($scope.bestTimes);
     };
 
-    //Sets the current course to the clicked index. Course view is loaded after this (done in the html-file)
+    //Sets the current course to the clicked index. Then loads the course view
     $scope.courseClicked = function(category, index){
       $scope.$log.log("Category: " + category + " Index: " + index);
       var catIndex = $scope.categories.indexOf(category);
       CourseManager.setCourseManager($scope.courses[catIndex][index]);
-
-
-      $scope.$log.log("New CourseManager: " + CourseManager.getCourseManager().name);
+      $state.go('app.course');
     };
 
-    $scope.$on('$ionicView.beforeEnter', function(e) {
+    $scope.$on('$ionicView.enter', function(e) {
+
       $scope.$log.log("Fetching record times");
       $scope.getTimes();
-
     });
 
 
@@ -129,8 +129,6 @@ angular.module('skills.controllers', [])
     $scope.values = {};
     $scope.values.data = "data";
     $scope.values.filename = "file";
-    var vData = $scope.values.data;
-    var vFile = $scope.values.filename;
 
     $scope.saveTestData = function(){
       $scope.$log.log("Filename: " + $scope.values.filename + "  Data: " + $scope.values.data);
@@ -152,7 +150,7 @@ angular.module('skills.controllers', [])
     //This controller creates the modal for the info
     //Trying to move it into another controller broke the whole program
     //Might be that the new controller has to be added in index.html, not the launch button
-  .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+  .controller('AppCtrl', function($scope, $ionicModal) {
 
     // From ionic:
     // With the new view caching in Ionic, Controllers are only called

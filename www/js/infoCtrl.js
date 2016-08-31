@@ -42,7 +42,6 @@ angular.module('skills.controllers')
       return CourseManager.getCourseManager();
     }, function(NewValue, OldValue){
       $scope.courseManager = NewValue;
-      $scope.$log.log("New courseManager @info: " + NewValue.name);
       $scope.getInfo();
     });
 

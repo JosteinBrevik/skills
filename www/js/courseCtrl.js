@@ -6,7 +6,6 @@ angular.module('skills.controllers')
 
     var values = [];
     var pickedValue = "";
-    var file = "";
     $scope.inputVal = {};
     $scope.values = values;
     $scope.$log = $log;
@@ -17,12 +16,14 @@ angular.module('skills.controllers')
     $scope.focusManager = { focusOnBlur: false}; // This value decides if the keyboard should be visible
     $scope.meta = {};
     $scope.meta.isImageCourse = false;
+    $scope.fileName = "";
 
 
     //Called to load the data that the picked course contains.
     $scope.loadCourse= function () {
       $scope.$log.log("Initializing course");
       var courseManager = CourseManager.getCourseManager();
+      $scope.fileName = courseManager.name;
       $scope.$log.log(courseManager);
       var filename = courseManager.name;
       var filePath = "JSON/" + filename + ".json";
@@ -89,6 +90,12 @@ angular.module('skills.controllers')
     $scope.checkForNewRecord = function(){
       var currentTime = TimerManager.getTime();
       $scope.$log.log("Time used: " + currentTime);
+      var prevRecord = $scope.loadData($scope.fileName);
+      $log.log("Old record: " + prevRecord);
+      if(currentTime < prevRecord || prevRecord == 0 || prevRecord == null){
+        $log.log("New record");
+        $scope.saveData($scope.fileName, currentTime);
+      }
     };
 
     //Handles everything on enter

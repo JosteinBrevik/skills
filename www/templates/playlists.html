@@ -4,12 +4,15 @@
       Recommended course of the day: European Capitals - Because you don't know where Pristina is
     </div>
     <ul ng-repeat="category in categories" class = "card">
-      <h2>{{category.charAt(0).toUpperCase() + category.slice(1)}}</h2> <!-- Capitalizes the category -->
-      <a href="#app/course">
-        <ul ng-repeat="x in courses[categories.indexOf(category)]">
-          <li class="card" ng-click="courseClicked(category, $index)">{{x.displayName}} {{bestTimes[$parent.$index][$index]}}</li>
-        </ul>
-      </a>
+      <li>
+        <h2>{{category.charAt(0).toUpperCase() + category.slice(1)}}</h2> <!-- Capitalizes the category -->
+          <ul ng-repeat="x in courses[categories.indexOf(category)]">
+            <li class="card course" ng-click="courseClicked(category, $index)">
+              <h3>{{x.displayName}} </h3>
+
+              <p> Best time: {{bestTimes[$parent.$index][$index]}}</p></li>
+          </ul>
+      </li>
     </ul>
   </ion-content>
 </ion-view>

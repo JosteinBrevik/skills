@@ -33,6 +33,7 @@ angular.module('skills', ['ionic','ionic.service.core', 'skills.controllers'])
       },
       setCourseManager: function (courseManagerObject) {
         courseManager = courseManagerObject;
+        console.log("@factory: New CourseManager: " + courseManager.name);
       }
     };
   })
@@ -114,14 +115,14 @@ angular.module('skills', ['ionic','ionic.service.core', 'skills.controllers'])
         })
 
 
-        .state('app.alphabet', {
+        /*.state('app.alphabet', {
           url: '/alphabet',
           views: {
             'menuContent': {
               templateUrl: 'templates/alphabet.html'
             }
           }
-        })
+        })*/
 
         .state('app.info', {
           url: '/info',
@@ -132,14 +133,14 @@ angular.module('skills', ['ionic','ionic.service.core', 'skills.controllers'])
           }
         })
 
-        .state('app.cyrillic', {
+        /*.state('app.cyrillic', {
           url: '/cyrillic',
           views: {
             'menuContent': {
               templateUrl: 'templates/cyrillic.html'
             }
           }
-        })
+        })*/
 
       .state('app.playlists', {
         url: '/playlists',
